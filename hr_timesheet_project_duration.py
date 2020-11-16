@@ -34,7 +34,7 @@ class project_duration_timesheet(osv.Model):
             print "PRO", rec.projects_list.search(["|", ('user_id', '=', uid), ('name', '=', rec.timesheet_ids[num]['unit_amount'])])
             print proj_duration_id['employee']['name'], proj_duration_id['hours_amount']
 
-            if
+            # if
 
         return res
 
