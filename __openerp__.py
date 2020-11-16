@@ -19,7 +19,9 @@ email: daniel.demedziuk@mjgroup.pl
     'website': 'website',
     'category': 'Tool, Addon',
     'depends': ['account', 'hr_timesheet_sheet', 'mail', 'contacts'],
-    'data': ['views/project_duration_view.xml'],
+    'data': [
+        'views/project_duration_view.xml',
+    ],
     'auto_install': False,
     'application': False,
     'installable': True,

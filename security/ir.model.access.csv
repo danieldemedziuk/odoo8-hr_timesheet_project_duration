@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_project.duration,project.duration,model_project_duration,account.group_account_manager,1,1,1,1
+access_project_duration,project duration,model_project_duration,group_project_duration_manager,1,1,1,1
