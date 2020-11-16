@@ -9,6 +9,7 @@ class project_duration_timesheet(osv.osv):
     _inherit = "account.analytic.line"
 
     _columns = {
+        'project': fields.many2one('account.analytic.account', ),
         'proj_duration_id': fields.one2many('project.duration', 'proj_duration_id')
     }
 
