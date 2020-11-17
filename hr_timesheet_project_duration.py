@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# from openerp import api, fields, models, _
 from openerp.osv import fields, osv
-from openerp import api, _
 
-class project_duration_timesheet(osv.Model):
+
+class project_duration_timesheet(osv.osv):
     _inherit = "hr_timesheet_sheet.sheet"
 
     _columns = {
@@ -26,19 +25,22 @@ class project_duration_timesheet(osv.Model):
             print "UNIT", number
 
             proj_name = rec.timesheet_ids[num]['account_id']['name']
+            emp_name = rec.timesheet_ids[num]['user_id']['name']
             project_id = rec.projects_list.search([('name', '=', proj_name)])
             proj_duration_id = rec.project_duration_ids.search(['&', ('employee.user_id', '=', uid), ('proj_duration_id', '=', proj_name)])
             proj_duration_hours = proj_duration_id['hours_amount']
             proj_duration_employee = proj_duration_id['employee']['name']
 
-            print "PRO", rec.projects_list.search(["|", ('user_id', '=', uid), ('name', '=', rec.timesheet_ids[num]['unit_amount'])])
-            print proj_duration_id['employee']['name'], proj_duration_id['hours_amount']
+            # print "PRO", rec.projects_list.search(["|", ('user_id', '=', uid), ('name', '=', rec.timesheet_ids[num]['unit_amount'])])
+            # print proj_duration_employee, proj_duration_hours
+            # print "emp_name", emp_name
+        if (emp_name == proj_duration_employee) and (number <= proj_duration_hours):
 
-            # if
+            return res
 
-        return res
-
-
+        else:
+            raise osv.except_osv(('Warning!'),
+                                 ('You are not on the list of employees assigned to the project or your number of hours per project is exhausted. Check the correctness of the project and number of hours or contact the administrator.'))
 
 
 class project_duration_model(osv.Model):
